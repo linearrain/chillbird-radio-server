@@ -1,6 +1,6 @@
 # chillbird-radio-server
-### Alpha version
-The small and simple protocol for internet radio streaming engines, no HLS or ICED used. A heart of Chillbird radio.
+### Description
+The small and simple, yet efficient protocol for internet radio streaming engines, no HLS or ICED used. A heart of Chillbird radio.
 
 ## How to use
 1. Download the project
