@@ -1,6 +1,6 @@
-# chillbird-radio-server (STILL IN EARLY DEVELOPMENT STAGE)
+# chillbird-radio-server
 ### Alpha version
-My simplified implementation of Broadcasting Server for mp3 audio via http by using Golang net/http package mainly. A heart of Chillbird radio.
+The small and simple protocol for internet radio streaming engines, no HLS or ICED used. A heart of Chillbird radio.
 
 ## How to use
 1. Download the project
