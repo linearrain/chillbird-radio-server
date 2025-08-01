@@ -117,7 +117,7 @@ async function seekAudioStream(streamUrl : string, sourceBuffer : SourceBuffer) 
 // currently supported by all major browsers as well as 
 // on the latest mobile devices
 
-function initAudioPlayer() {
+function initAudioPlayer(streamUrl : string) {
     const mediaSource = new MediaSource();
     const codec = 'audio/mpeg';
     const audio = new Audio(URL.createObjectURL(mediaSource));
