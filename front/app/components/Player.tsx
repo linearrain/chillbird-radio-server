@@ -1,7 +1,8 @@
 import PlayButton from './player/PlayButton';
 import ProgressBar from './player/ProgressBar';
 
-export default function Player(props: { songname: string; }) {
+export default function Player(props: { songname: string; setPlay : (play: boolean) => void;
+    isPlaying: boolean; loudness: number; }) {    
     return (
         <div style={{
             width: '100%',
@@ -9,9 +10,11 @@ export default function Player(props: { songname: string; }) {
             alignItems: 'center',
             gap: '36px',
         }}>
-            <PlayButton />
+            <audio style={{ display: 'none' }} />
+            
+            <PlayButton setPlay={props.setPlay} isPlaying={props.isPlaying} />
             <div>
-                <ProgressBar current="50%" />
+                <ProgressBar current={`${props.loudness * 100.0}%`} />
                 
                 <div>
                     <b>Current Song: </b>

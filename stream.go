@@ -49,12 +49,16 @@ func Broadcast(audioData chan []byte, clients *[]Client) {
 
 					if err != nil {
 						fmt.Println("Client refused the connection", "(", err, ")")
-						(*clients)[index].interruptSignal <- []byte{0x00}
-						(*clients) = append((*clients)[:index], (*clients)[index+1:]...)
-						pendingDeletion = append(pendingDeletion, index)
+						if index < len(*clients) {
+							(*clients)[index].interruptSignal <- []byte{0x00}
+
+							(*clients) = append((*clients)[:index], (*clients)[index+1:]...)
+							pendingDeletion = append(pendingDeletion, index)
+						}
 					}
 					waitGroup.Done()
 				}(index, client)
+
 			}
 			waitGroup.Wait()
 		}
@@ -72,7 +76,7 @@ func decideFragment(audioData chan []byte, currentSong *atomic.Value, seconds fl
 	for {
 		// Sending the silence to the clients to reduce the possibility of
 		// the premature quitting
-		transf.SendSilence(audioData, seconds)
+		// transf.SendSilence(audioData, seconds)
 
 		// Getting the list of songs in the directory
 		files := transf.GetSongList(path)

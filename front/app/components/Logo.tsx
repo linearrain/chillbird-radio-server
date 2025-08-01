@@ -14,13 +14,15 @@ export default function Logo() {
             letterSpacing: '0.2rem',
         }}>
             <span style={{
-                gridArea: 'slogan'
+                gridArea: 'slogan',
+                whiteSpace: 'nowrap',
             }}>free without any limitations</span>
             
             <span style={{
                 gridArea: 'year',
                 textAlign: 'right',
                 paddingRight: '1.4rem',
+                whiteSpace: 'nowrap',
             }}>est. 2024</span>
 
             <div style={{

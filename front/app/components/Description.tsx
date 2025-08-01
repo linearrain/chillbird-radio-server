@@ -3,7 +3,8 @@ export default function Description() {
     return (
         <>
             <p style={{
-                fontSize: '14px'
+                fontSize: '14px',
+                wordBreak: 'break-word' 
             }}>
      
      CHILLBIRD is an internet radio station, established as a small Golang / 

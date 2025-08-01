@@ -1,10 +1,14 @@
 
-export default function PlayButton(props: { isPlaying : boolean; }) {
+export default function PlayButton(props: { setPlay: (play: boolean) => void; 
+                                            isPlaying: boolean; }) {
+
     let size = '64px';
     
     return (
         <>
-            <button
+            <button onClick={() => {
+                props.setPlay(!props.isPlaying);
+            }}
              style={{
                 width: size,
                 height: size,
