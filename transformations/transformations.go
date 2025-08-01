@@ -37,6 +37,10 @@ func NextSelect(currentInd *int, songs []os.DirEntry) os.DirEntry {
     (*currentInd)++
     *currentInd %= len(songs)
 
+    if *currentInd == 0 {
+        ShuffleList(&songs)
+    }
+
     return songs[*currentInd]
 }
 
@@ -44,7 +48,12 @@ func NextSelect(currentInd *int, songs []os.DirEntry) os.DirEntry {
 // For streaming 
 
 func CreateBuffer(bytesPerSecond int, seconds float32) *[]byte {
-
-    buf := make([]byte, bytesPerSecond * int(seconds)) 
+    var size int = int(float32(bytesPerSecond) * seconds)
+    buf := make([]byte, size) 
     return &buf
+}
+
+func SendSilence(audioData chan []byte, seconds float32) {
+    buf := CreateBuffer(40000, seconds)
+    audioData <- *buf
 }
