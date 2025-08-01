@@ -1,0 +1,8 @@
+front/.DS_Store
+front/node_modules/
+
+# React Router
+front/.react-router/
+front/build/
+
+music/
