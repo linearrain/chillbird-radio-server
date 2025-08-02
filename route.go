@@ -57,6 +57,7 @@ func getStream(w http.ResponseWriter, r *http.Request, clients *[]Client) {
 	disableCORS(w)
 
 	interruptWaiter := make(chan []byte)
+	defer close(interruptWaiter)
 
 	client := Client{w, interruptWaiter}
 

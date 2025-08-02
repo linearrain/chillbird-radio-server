@@ -9,6 +9,8 @@ import { getCurrentSong, initAudioPlayer } from "../components/player/Functions"
 
 import Socials from "../components/Socials";
 
+import Time from "../components/Time";
+
 
 
 export default function Home() {
@@ -76,8 +78,30 @@ export default function Home() {
 
         <div style={{ width: descW }}>
           <Description />
+          <br /><br />
           <Player songname={currentSong}  setPlay={ setIsPlaying } 
                   isPlaying={ isPlaying } loudness={0.99} />
+            
+          <div style={{
+            marginTop: '48px',
+            display: 'flex'
+            , justifyContent: 'space-between',}}>
+            <Time 
+              url="https://timeapi.io/api/time/current/zone?timeZone=Europe%2FAmsterdam" 
+              city="Amsterdam" />
+
+            <Time
+              url="https://timeapi.io/api/time/current/zone?timeZone=Europe%2FKyiv" 
+              city="Kyiv" />
+
+            <Time
+              url="https://timeapi.io/api/time/current/zone?timeZone=Asia%2FSingapore"
+              city="Singapore" />
+            
+            <Time
+              url="https://timeapi.io/api/time/current/zone?timeZone=America%2FNew_York"
+              city="New York" />
+          </div>
         </div>
       </div>
       <Socials />
