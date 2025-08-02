@@ -1,11 +1,13 @@
 import type { Route } from "./+types/home";
 import { useEffect, useState, useRef, useLayoutEffect } from 'react';
-import Logo from "../components/Logo";
-import Socials from "../components/Socials";
-import Description from "../components/Description";
-import Player from "../components/Player";
 
-let audioVol = 0.0;
+import Logo from "../components/Logo";
+import Description from "../components/Description";
+
+import Player from "../components/Player";
+import { getCurrentSong, initAudioPlayer } from "../components/player/Functions";
+
+import Socials from "../components/Socials";
 
 
 
@@ -36,6 +38,13 @@ export default function Home() {
 
 
 
+  // Initialize the audio player
+  // It would start seeking the audio stream
+  // Before that creating a media source buffer
+
+  useEffect(() => {
+    initAudioPlayer(IP_DOMAIN + '/stream', isPlaying);
+  }, [isPlaying]);
 
 
   // HTML LAYOUT
@@ -68,7 +77,7 @@ export default function Home() {
         <div style={{ width: descW }}>
           <Description />
           <Player songname={currentSong}  setPlay={ setIsPlaying } 
-                  isPlaying={ isPlaying } loudness={audioVol} />
+                  isPlaying={ isPlaying } loudness={0.99} />
         </div>
       </div>
       <Socials />

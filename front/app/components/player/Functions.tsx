@@ -41,6 +41,7 @@ function fadeIn(audio : HTMLAudioElement) {
 // the comunication with the audio server again
 
 async function seekAudioStream(streamUrl : string, sourceBuffer : SourceBuffer) {
+    console.log('Seeking audio stream:', streamUrl);
     const response = await fetch(streamUrl);
 
     // In the case there is no information in the response
@@ -117,8 +118,8 @@ async function seekAudioStream(streamUrl : string, sourceBuffer : SourceBuffer) 
 // currently supported by all major browsers as well as 
 // on the latest mobile devices
 
-function initAudioPlayer(streamUrl : string) {
-    const mediaSource = new MediaSource();
+export function initAudioPlayer(streamUrl : string, isPlaying : boolean) {
+    const mediaSource = new window.MediaSource();
     const codec = 'audio/mpeg';
     const audio = new Audio(URL.createObjectURL(mediaSource));
 
@@ -135,6 +136,10 @@ function initAudioPlayer(streamUrl : string) {
 
         seekAudioStream(streamUrl, sourceBuffer)
     });
+
+    if (isPlaying) {
+        audio.play();
+    }
 }
 
 
@@ -143,11 +148,10 @@ function initAudioPlayer(streamUrl : string) {
 // It is used inside of the home component
 // To update the song name every reasonable interval
 
-function getCurrentSong(ip_port : string) : Promise<string> {
+export function getCurrentSong(ip_port : string) : Promise<string> {
   return fetch(ip_port + '/get_current_info')
         .then(response => response.json())
         .then(data => {
-    console.log(data);
     return data.artist;
   })
         .catch(error => {

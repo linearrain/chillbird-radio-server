@@ -54,6 +54,8 @@ func getStream(w http.ResponseWriter, r *http.Request, clients *[]Client) {
 	w.Header().Set("Expires", "0")
 	w.Header().Set("Connection", "keep-alive")
 
+	disableCORS(w)
+
 	interruptWaiter := make(chan []byte)
 
 	client := Client{w, interruptWaiter}
